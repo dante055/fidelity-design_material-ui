@@ -1,0 +1,10 @@
+export { default as Home } from './Home';
+export { default as Services } from './Services';
+export { default as CustomSoftware } from './CustomSoftware';
+export { default as MobileApps } from './MobileApps';
+export { default as Websites } from './Websites';
+export { default as Revolution } from './Revolution';
+export { default as Estimate } from './Estimate';
+export { default as About } from './About';
+export { default as Contact } from './Contact';
+export { default as Error404 } from './Error404';

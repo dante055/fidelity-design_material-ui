@@ -1,26 +1,40 @@
+import { ThemeProvider, makeStyles } from '@material-ui/core';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import theme from './theme';
+import AppRouter from './AppRouter';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ActiveContextProvider } from './resources/context/ActivePageContext';
+import Footer from './components/shared/Footer';
+import Header from './components/shared/Header';
+  
+const useStyles = makeStyles(theme => ({
+  mainContainer: {
+    minHeight: 'calc(100vh - 5rem - 14rem)',
+    [theme.breakpoints.down('md')]: {
+      minHeight: 'calc(100vh - 4rem - 11rem)',
+    },
+    [theme.breakpoints.down('xs')]: {
+      minHeight: 'calc(100vh - 3.5rem - 9rem)',
+    },
+  },
+}));
 
-function App() {
+const App = () => {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <ActiveContextProvider>
+          <Header />
+          <div className={classes.mainContainer}>
+            <AppRouter />
+          </div>
+          <Footer />
+        </ActiveContextProvider>
+      </Router>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
